@@ -1,2 +1,3 @@
+include ':mnc-apps-sdk'
 include ':app'
 rootProject.name = "MNCApps"
