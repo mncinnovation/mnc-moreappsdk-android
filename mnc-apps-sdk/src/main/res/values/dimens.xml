@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin Size -->
+    <dimen name="x_small_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="normal_margin">12dp</dimen>
+    <dimen name="large_margin">16dp</dimen>
+    <dimen name="x_large_margin">20dp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="normal_text">14sp</dimen>
+    <dimen name="big_text">16sp</dimen>
+
+    <!-- Widget Size -->
+    <dimen name="xx_small_width">30dp</dimen>
+    <dimen name="x_small_width">50dp</dimen>
+    <dimen name="small_width">70dp</dimen>
+    <dimen name="normal_width">100dp</dimen>
+</resources>
