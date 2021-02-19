@@ -3,6 +3,7 @@ package com.innocent.mnc_apps_sdk.presenter
 import android.content.Context
 import android.widget.Toast
 import com.innocent.mnc_apps_sdk.model.AppsModel
+import com.innocent.mnc_apps_sdk.model.LayoutModel
 import com.innocent.mnc_apps_sdk.model.ResponseData
 import com.innocent.mnc_apps_sdk.service.Interactor
 import com.innocent.mnc_apps_sdk.service.ServiceBuilder
@@ -36,24 +37,29 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
 
     override var listApps: MutableList<AppsModel> = ArrayList()
 
+    override var layoutApps: LayoutModel = LayoutModel()
+
     override fun getListApps() {
-        interactor?.getDataNetwork(userID = "uLULDfzLaSMy60yrIBAaRn39qh13", packageName = "com.mncapps.testmncapps", platformType = "ios")
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribeWith(object : DisposableObserver<ResponseData>() {
-                override fun onNext(responseData: ResponseData) {
-                    listApps.clear()
-                    listApps.addAll(responseData.items!!)
-                    view?.showListApps()
-                }
+        view?.getUserID()?.let {
+            interactor?.getDataNetwork(userID = it, packageName = view?.getPackageNameApps()!!, platformType = view?.getPlatformType()!!)
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeWith(object : DisposableObserver<ResponseData>() {
+                    override fun onNext(responseData: ResponseData) {
+                        layoutApps = responseData.layout!!
+                        listApps.clear()
+                        listApps.addAll(responseData.items!!)
+                        view?.showListApps()
+                    }
 
-                override fun onError(e: Throwable) {
-                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-                }
+                    override fun onError(e: Throwable) {
+                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                    }
 
-                override fun onComplete() {
-                }
+                    override fun onComplete() {
+                    }
 
-            })?.let { compositeDisposable.add(it) }
+                })?.let { compositeDisposable.add(it) }
+        }
     }
 }

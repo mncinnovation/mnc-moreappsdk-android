@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        clickButton.setOnClickListener { MNCAppsActivity().mainStartActivity(this) }
+        clickButton.setOnClickListener { MNCAppsActivity().mainStartActivity(this, userID = "irKmyJJGGlNjMt7Kpg3xYlRT6dn1", packageName = "an.android.app", platformType = "android"  ) }
     }
 }

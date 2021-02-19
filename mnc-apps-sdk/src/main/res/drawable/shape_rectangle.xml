@@ -9,7 +9,7 @@
 
             <solid android:color="@color/grey_50" />
 
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
@@ -22,7 +22,7 @@
 
             <solid android:color="@color/grey_100" />
 
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
@@ -35,7 +35,7 @@
 
             <solid android:color="@color/grey_200" />
 
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
@@ -48,7 +48,7 @@
 
             <solid android:color="@color/grey_200" />
 
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
@@ -61,14 +61,14 @@
 
             <solid android:color="@color/grey_200" />
 
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
     <item>
         <shape>
             <solid android:color="@android:color/white" />
-            <corners android:radius="@dimen/small_margin" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
 </layer-list>

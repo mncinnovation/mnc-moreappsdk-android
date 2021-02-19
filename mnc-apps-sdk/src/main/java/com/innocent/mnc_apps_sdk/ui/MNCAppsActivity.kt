@@ -42,8 +42,11 @@ class MNCAppsActivity : AppCompatActivity(), MNCAppsContract.View {
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
-    fun mainStartActivity(context: Context) {
+    fun mainStartActivity(context: Context, userID: String, packageName: String, platformType: String) {
         val intent = Intent(context, MNCAppsActivity::class.java)
+        intent.putExtra(Constant.userID, userID)
+        intent.putExtra(Constant.packageName, packageName)
+        intent.putExtra(Constant.platformType, platformType)
         context.startActivity(intent)
     }
 
@@ -52,8 +55,20 @@ class MNCAppsActivity : AppCompatActivity(), MNCAppsContract.View {
         return true
     }
 
+    override fun getUserID(): String? {
+       return intent.getStringExtra(Constant.userID)
+    }
+
+    override fun getPackageNameApps(): String? {
+        return intent.getStringExtra(Constant.packageName)
+    }
+
+    override fun getPlatformType(): String? {
+        return intent.getStringExtra(Constant.platformType)
+    }
+
     override fun showListApps() {
-        listAppsAdapter = MNCAppsAdapter(this, presenter.listApps)
+        listAppsAdapter = MNCAppsAdapter(this, presenter.listApps, presenter.layoutApps)
         appsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         appsRecyclerView.adapter = listAppsAdapter
     }
