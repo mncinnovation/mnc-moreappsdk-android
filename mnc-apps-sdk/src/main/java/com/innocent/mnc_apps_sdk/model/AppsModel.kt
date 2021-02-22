@@ -1,5 +1,7 @@
 package com.innocent.mnc_apps_sdk.model
 
+import com.innocent.mnc_apps_sdk.utils.PackageNameUtils
+
 class AppsModel {
     var appID: String? = null
     var appName: String? = null
@@ -16,6 +18,7 @@ class AppsModel {
     inner class AppMeta {
         var scheme: String? = null
         var store: String? = null
+        var packageName: String? = store?.let { PackageNameUtils.getQueryMap(it)?.get("id") }
     }
 
     inner class Translation {

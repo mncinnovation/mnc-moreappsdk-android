@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.innocent.mnc_apps_sdk.R
 import com.innocent.mnc_apps_sdk.model.AppsModel
 import com.innocent.mnc_apps_sdk.model.LayoutModel
+import com.innocent.mnc_apps_sdk.utils.ButtonUtils
 import com.innocent.mnc_apps_sdk.utils.LayoutUtils
 import kotlinx.android.synthetic.main.item_recyclerview_mnc_apps.view.*
 
@@ -39,15 +40,25 @@ class MNCAppsAdapter(
     @Suppress("DEPRECATION")
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(apps: AppsModel, layout: LayoutModel) {
+            var installed: Boolean = false
+            var buttonText: String = "Open"
+
+            installed = ButtonUtils.getInstalledStatus(data = apps, packageManager = context.packageManager)
+            buttonText = ButtonUtils.getButtonLabel(data = apps, installed = installed)
+
             itemView.title.text = apps.appName
             itemView.desc.text = apps.description?.id
             Glide.with(context)
                 .load(apps.image)
                 .into(itemView.logoAppsImageView)
 
-            LayoutUtils.getDrawable(radius = layout.buttonRoundedSize, color = layout.buttonColor, view = itemView.openButton)
+            LayoutUtils.getDrawable(radius = LayoutUtils.getRoundSize(layout.buttonRoundedSize), color = layout.buttonColor, view = itemView.openButton)
             itemView.openButton.setTextColor(Color.parseColor("#${layout.buttonTextColor}"))
-            itemView.cardListLayout.radius = layout.cardRoundedSize!!.toFloat()
+            itemView.cardListLayout.radius = LayoutUtils.getRoundSize(layout.cardRoundedSize).toFloat()
+            itemView.openButton.text = buttonText
+            itemView.openButton.setOnClickListener {
+                ButtonUtils.openFunction(context = context, data = apps, installed = installed)
+            }
         }
     }
 }

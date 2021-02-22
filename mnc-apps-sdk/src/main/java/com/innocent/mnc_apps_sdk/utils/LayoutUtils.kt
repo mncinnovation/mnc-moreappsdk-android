@@ -1,9 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.innocent.mnc_apps_sdk.utils
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
-import android.widget.Button
 
 object LayoutUtils {
     fun getDrawable(view: View?, radius:Int?, color: String?) {
@@ -13,5 +14,22 @@ object LayoutUtils {
         drawable.setColor(Color.parseColor("#$color"))
         drawable.cornerRadius = radius!!.toFloat()
         view?.setBackgroundDrawable(drawable)
+    }
+
+    fun getRoundSize(size: Int?): Int {
+        return when (size) {
+            0 -> {
+                0
+            }
+            1 -> {
+                8
+            }
+            2 -> {
+                16
+            }
+            else -> {
+                8
+            }
+        }
     }
 }
