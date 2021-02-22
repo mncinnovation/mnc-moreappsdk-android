@@ -20,9 +20,8 @@ class MNCAppsActivity : AppCompatActivity(), MNCAppsContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mnc_apps_screen)
 
-        setupToolbar()
-
         setLogo()
+        setupToolbar()
 
         presenter.bind(this)
         presenter.start()
@@ -40,14 +39,6 @@ class MNCAppsActivity : AppCompatActivity(), MNCAppsContract.View {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
-
-    fun mainStartActivity(context: Context, userID: String, packageName: String, platformType: String) {
-        val intent = Intent(context, MNCAppsActivity::class.java)
-        intent.putExtra(Constant.userID, userID)
-        intent.putExtra(Constant.packageName, packageName)
-        intent.putExtra(Constant.platformType, platformType)
-        context.startActivity(intent)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -74,4 +65,14 @@ class MNCAppsActivity : AppCompatActivity(), MNCAppsContract.View {
     }
 
     override fun initPresenter(): MNCAppsContract.Presenter = MNCAppsPresenter(this)
+
+    companion object {
+        fun mainStartActivity(context: Context, userID: String, packageName: String, platformType: String) {
+            val intent = Intent(context, MNCAppsActivity::class.java)
+            intent.putExtra(Constant.userID, userID)
+            intent.putExtra(Constant.packageName, packageName)
+            intent.putExtra(Constant.platformType, platformType)
+            context.startActivity(intent)
+        }
+    }
 }

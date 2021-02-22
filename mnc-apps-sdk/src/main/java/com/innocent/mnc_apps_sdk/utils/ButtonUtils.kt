@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import com.innocent.mnc_apps_sdk.model.AppsModel
+import com.innocent.mnc_apps_sdk.ui.InAppWebViewActivity
 import com.innocent.mnc_apps_sdk.utils.PackageNameUtils.getQueryMap
 
 
@@ -13,7 +14,7 @@ object ButtonUtils {
         data: AppsModel?,
         packageManager: PackageManager?
     ): Boolean {
-        val packageName = data?.android?.store?.let { getQueryMap(it)?.get("id") }
+        val packageName = data?.android?.store?.let { getQueryMap(query = it)?.get("id") }
         return try {
             packageManager?.getPackageInfo(packageName, 0)
             true
@@ -32,7 +33,7 @@ object ButtonUtils {
     }
 
     fun openFunction(context: Context, data: AppsModel?, installed: Boolean) {
-        val packageName = data?.android?.store?.let { getQueryMap(it)?.get("id") }
+        val packageName = data?.android?.store?.let { getQueryMap(query = it)?.get("id") }
 
         if (data?.open == "store") data.android?.store?.let {
             openBrowser(
@@ -40,7 +41,7 @@ object ButtonUtils {
                 url = it
             )
         }
-        if (data?.open == "web") data.webUrl?.let { openBrowser(context = context, url = it) }
+        if (data?.open == "web") data.webUrl?.let { InAppWebViewActivity.startActivity(context = context, url = it) }
 
         if (data?.open == "app") {
             if (installed) {

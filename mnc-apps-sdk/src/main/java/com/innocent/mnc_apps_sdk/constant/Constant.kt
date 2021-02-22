@@ -9,4 +9,5 @@ object Constant {
     const val userID = "userID"
     const val packageName = "packageName"
     const val platformType = "platformType"
+    const val webUrl = "webUrl"
 }
