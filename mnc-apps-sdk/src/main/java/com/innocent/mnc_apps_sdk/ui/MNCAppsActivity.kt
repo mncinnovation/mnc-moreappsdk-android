@@ -2,7 +2,10 @@ package com.innocent.mnc_apps_sdk.ui
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.innocent.mnc_apps_sdk.R
 import com.innocent.mnc_apps_sdk.base.BaseActivity
@@ -30,6 +33,9 @@ class MNCAppsActivity : BaseActivity(), MNCAppsContract.View {
         return true
     }
 
+    override val screenSize: Int?
+        get() = resources.configuration.smallestScreenWidthDp
+
     override fun getUserID(): String? {
        return intent.getStringExtra(Constant.userID)
     }
@@ -44,14 +50,37 @@ class MNCAppsActivity : BaseActivity(), MNCAppsContract.View {
 
     override fun showListApps() {
         listAppsAdapter = MNCAppsAdapter(this, presenter.listApps, presenter.layoutApps)
-        appsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        appsRecyclerView.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
         appsRecyclerView.adapter = listAppsAdapter
+    }
+
+    override fun showGridListApps() {
+        listAppsAdapter = MNCAppsAdapter(this, presenter.listApps, presenter.layoutApps)
+        appsRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        appsRecyclerView.adapter = listAppsAdapter
+    }
+
+    override fun showProgressBar(isShown: Boolean) {
+        if (isShown) {
+            listProgressBar.visibility = View.VISIBLE
+        } else {
+            listProgressBar.visibility = View.GONE
+        }
     }
 
     override fun initPresenter(): MNCAppsContract.Presenter = MNCAppsPresenter(this)
 
     companion object {
-        fun mainStartActivity(context: Context, userID: String, packageName: String, platformType: String) {
+        fun mainStartActivity(
+            context: Context,
+            userID: String,
+            packageName: String,
+            platformType: String
+        ) {
             val intent = Intent(context, MNCAppsActivity::class.java)
             intent.putExtra(Constant.userID, userID)
             intent.putExtra(Constant.packageName, packageName)

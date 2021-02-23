@@ -1,6 +1,8 @@
 package com.innocent.mnc_apps_sdk.presenter
 
 import android.content.Context
+import android.content.res.Configuration
+import android.util.Log
 import android.widget.Toast
 import com.innocent.mnc_apps_sdk.model.AppsModel
 import com.innocent.mnc_apps_sdk.model.LayoutModel
@@ -14,6 +16,7 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
+    private val TAG = "MNCAppsPresenter"
     private var view: MNCAppsContract.View? = null
     private var interactor: Interactor? = null
     private val compositeDisposable: CompositeDisposable
@@ -40,7 +43,9 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
     override var layoutApps: LayoutModel = LayoutModel()
 
     override fun getListApps() {
-        view?.getUserID()?.let {
+        view?.showProgressBar(true)
+
+        view?.getUserID()?.let { it ->
             interactor?.getDataNetwork(userID = it, packageName = view?.getPackageNameApps()!!, platformType = view?.getPlatformType()!!)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
@@ -49,15 +54,22 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
                         layoutApps = responseData.layout!!
                         listApps.clear()
                         listApps.addAll(responseData.items!!)
-                        view?.showListApps()
+
+                        if (view?.screenSize!! >= 600) {
+                            view?.showGridListApps()
+                        } else {
+                            view?.showListApps()
+                        }
+                        view?.showProgressBar(false)
                     }
 
                     override fun onError(e: Throwable) {
-                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                        Log.d(TAG, "error: $e")
+                        Toast.makeText(context, "[MNCAPPS] Error getting data", Toast.LENGTH_SHORT).show()
+                        view?.showProgressBar(false)
                     }
 
-                    override fun onComplete() {
-                    }
+                    override fun onComplete() {}
 
                 })?.let { compositeDisposable.add(it) }
         }
