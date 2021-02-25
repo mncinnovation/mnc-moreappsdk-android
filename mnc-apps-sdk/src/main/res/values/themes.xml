@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="PrimaryText" parent="android:TextAppearance">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SecondaryText" parent="android:TextAppearance">
+        <item name="android:textColor">@color/grey_700</item>
+    </style>
+</resources>

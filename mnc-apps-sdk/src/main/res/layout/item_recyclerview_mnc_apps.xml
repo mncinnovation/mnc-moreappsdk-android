@@ -55,7 +55,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Title"
-                android:textColor="@color/black"
+                android:textAppearance="@style/PrimaryText"
                 android:textSize="@dimen/big_text"
                 android:textStyle="bold" />
 
@@ -66,8 +66,8 @@
                 android:layout_below="@+id/title"
                 android:ellipsize="end"
                 android:maxLines="3"
+                android:textAppearance="@style/SecondaryText"
                 android:text="Description"
-                android:textColor="@color/grey_700"
                 android:textSize="@dimen/normal_text" />
         </RelativeLayout>
 

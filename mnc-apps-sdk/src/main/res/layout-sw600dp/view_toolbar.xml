@@ -5,7 +5,6 @@
     android:id="@+id/viewToolbar"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
-    android:background="@color/white"
     app:contentInsetStartWithNavigation="0dp">
 
     <RelativeLayout

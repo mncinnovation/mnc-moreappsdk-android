@@ -22,6 +22,7 @@ class MNCAppsActivity : BaseActivity(), MNCAppsContract.View {
         setContentView(R.layout.activity_mnc_apps_screen)
 
         setLogo()
+        setScreenColor()
         setDisplayHomeAsUpEnabled(true)
 
         presenter.bind(this)
