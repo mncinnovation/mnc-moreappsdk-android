@@ -27,33 +27,25 @@ abstract class BaseActivity : AppCompatActivity() {
         if (isUsingToolbar) configToolbar(viewToolbar)
     }
 
-    protected fun setLogo() {
+    protected fun setScreenColor() {
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
+                screenLayout.setBackgroundColor(resources.getColor(R.color.white))
                 viewToolbar.setBackgroundColor(resources.getColor(R.color.white))
+                logoImageView.setColorFilter(resources.getColor(R.color.black))
                 Glide.with(this)
                     .asBitmap()
                     .load(Constant.mncLogo)
                     .into(logoImageView)
             }
             Configuration.UI_MODE_NIGHT_YES -> {
+                screenLayout.setBackgroundColor(resources.getColor(R.color.grey_900))
                 viewToolbar.setBackgroundColor(resources.getColor(R.color.grey_900))
                 logoImageView.setColorFilter(resources.getColor(R.color.white))
                 Glide.with(this)
                     .asBitmap()
                     .load(Constant.mncLogo)
                     .into(logoImageView)
-            }
-        }
-    }
-
-    protected fun setScreenColor() {
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                screenLayout.setBackgroundColor(resources.getColor(R.color.white))
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                screenLayout.setBackgroundColor(resources.getColor(R.color.grey_900))
             }
         }
     }

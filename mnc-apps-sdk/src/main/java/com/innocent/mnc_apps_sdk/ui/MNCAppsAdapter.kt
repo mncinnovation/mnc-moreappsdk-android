@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_recyclerview_mnc_apps.view.*
 
 
 class MNCAppsAdapter(
-    val context: Context,
+    val context: Context?,
     private val listApps: MutableList<AppsModel>,
     private val layoutModel: LayoutModel
 ) :
@@ -43,12 +43,12 @@ class MNCAppsAdapter(
             var installed: Boolean = false
             var buttonText: String = "Open"
 
-            installed = ButtonUtils.getInstalledStatus(data = apps, packageManager = context.packageManager)
+            installed = ButtonUtils.getInstalledStatus(data = apps, packageManager = context?.packageManager)
             buttonText = ButtonUtils.getButtonLabel(data = apps, installed = installed)
 
             itemView.title.text = apps.appName
             itemView.desc.text = apps.description?.id
-            Glide.with(context)
+            Glide.with(context!!)
                 .load(apps.image)
                 .into(itemView.logoAppsImageView)
 

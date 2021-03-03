@@ -45,8 +45,8 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
     override fun getListApps() {
         view?.showProgressBar(true)
 
-        view?.getUserID()?.let { it ->
-            interactor?.getDataNetwork(userID = it, packageName = view?.getPackageNameApps()!!, platformType = view?.getPlatformType()!!)
+        view?.userID?.let { it ->
+            interactor?.getDataNetwork(userID = it, packageName = view?.packageNameApps!!, platformType = view?.platformType!!)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribeWith(object : DisposableObserver<ResponseData>() {

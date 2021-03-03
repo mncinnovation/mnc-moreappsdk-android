@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import androidx.fragment.app.FragmentActivity
 import com.innocent.mnc_apps_sdk.model.AppsModel
-import com.innocent.mnc_apps_sdk.ui.InAppWebViewActivity
+import com.innocent.mnc_apps_sdk.ui.MNCAppsFragment
 import com.innocent.mnc_apps_sdk.utils.PackageNameUtils.getQueryMap
 
 
@@ -41,7 +42,7 @@ object ButtonUtils {
                 url = it
             )
         }
-        if (data?.open == "web") data.webUrl?.let { InAppWebViewActivity.startActivity(context = context, url = it) }
+        if (data?.open == "web") data.webUrl?.let { MNCAppsFragment().showWebViewFragment(webUrl = it, activity = context as FragmentActivity) }
 
         if (data?.open == "app") {
             if (installed) {

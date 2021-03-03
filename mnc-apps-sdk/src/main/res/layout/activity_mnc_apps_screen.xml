@@ -20,8 +20,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        layout="@layout/activity_mnc_apps_body"
+    <FrameLayout
+        android:id="@+id/appsFrameLayout"
+        android:name="com.innocent.mnc_apps_sdk.ui.MNCAppsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appBarLayout"
