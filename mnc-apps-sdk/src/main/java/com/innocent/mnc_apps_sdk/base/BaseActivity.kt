@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.innocent.mnc_apps_sdk.R
 import com.innocent.mnc_apps_sdk.constant.Constant
@@ -27,33 +28,25 @@ abstract class BaseActivity : AppCompatActivity() {
         if (isUsingToolbar) configToolbar(viewToolbar)
     }
 
-    protected fun setLogo() {
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                viewToolbar.setBackgroundColor(resources.getColor(R.color.white))
-                Glide.with(this)
-                    .asBitmap()
-                    .load(Constant.mncLogo)
-                    .into(logoImageView)
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                viewToolbar.setBackgroundColor(resources.getColor(R.color.grey_900))
-                logoImageView.setColorFilter(resources.getColor(R.color.white))
-                Glide.with(this)
-                    .asBitmap()
-                    .load(Constant.mncLogo)
-                    .into(logoImageView)
-            }
-        }
-    }
-
     protected fun setScreenColor() {
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                screenLayout.setBackgroundColor(resources.getColor(R.color.white))
+                screenLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                viewToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                logoImageView.setColorFilter(ContextCompat.getColor(this, R.color.black))
+                Glide.with(this)
+                    .asBitmap()
+                    .load(Constant.mncLogo)
+                    .into(logoImageView)
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                screenLayout.setBackgroundColor(resources.getColor(R.color.grey_900))
+                screenLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_900))
+                viewToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_900))
+                logoImageView.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                Glide.with(this)
+                    .asBitmap()
+                    .load(Constant.mncLogo)
+                    .into(logoImageView)
             }
         }
     }

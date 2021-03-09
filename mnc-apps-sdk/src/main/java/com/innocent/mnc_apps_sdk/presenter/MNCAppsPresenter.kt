@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
 import android.widget.Toast
+import com.innocent.mnc_apps_sdk.constant.Constant
+import com.innocent.mnc_apps_sdk.helper.PrefHelper
 import com.innocent.mnc_apps_sdk.model.AppsModel
 import com.innocent.mnc_apps_sdk.model.LayoutModel
 import com.innocent.mnc_apps_sdk.model.ResponseData
@@ -18,13 +20,8 @@ import io.reactivex.schedulers.Schedulers
 class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
     private val TAG = "MNCAppsPresenter"
     private var view: MNCAppsContract.View? = null
-    private var interactor: Interactor? = null
-    private val compositeDisposable: CompositeDisposable
-
-    init {
-        interactor = Interactor(ServiceBuilder().provideApiService())
-        compositeDisposable = CompositeDisposable()
-    }
+    var interactor: Interactor = Interactor(ServiceBuilder().provideApiServiceWithCache(context))
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun start() {
         getListApps()
@@ -45,11 +42,11 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
     override fun getListApps() {
         view?.showProgressBar(true)
 
-        view?.getUserID()?.let { it ->
-            interactor?.getDataNetwork(userID = it, packageName = view?.getPackageNameApps()!!, platformType = view?.getPlatformType()!!)
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeWith(object : DisposableObserver<ResponseData>() {
+        view?.userID?.let { it ->
+            interactor.getDataNetwork(userID = it, packageName = view?.packageNameApps!!, platformType = view?.platformType!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ResponseData>() {
                     override fun onNext(responseData: ResponseData) {
                         layoutApps = responseData.layout!!
                         listApps.clear()

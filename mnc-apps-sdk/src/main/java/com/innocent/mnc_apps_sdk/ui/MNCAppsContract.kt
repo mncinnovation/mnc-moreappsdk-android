@@ -8,12 +8,12 @@ import com.innocent.mnc_apps_sdk.model.LayoutModel
 interface MNCAppsContract {
     interface View: BaseView<Presenter> {
         val screenSize: Int?
-        fun getUserID(): String?
-        fun getPackageNameApps(): String?
-        fun getPlatformType(): String?
         fun showListApps()
         fun showGridListApps()
         fun showProgressBar(isShown: Boolean)
+        var userID: String?
+        var packageNameApps: String?
+        var platformType: String?
     }
 
     interface Presenter: BasePresenter<View> {
