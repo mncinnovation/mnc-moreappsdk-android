@@ -8,11 +8,11 @@ plugins {
 def customizeApkName(variant) {
     variant.outputs.all {
         def sdkName = "mncapps"
-        def fileName = "${sdkName}-${variant.buildType.name}-"
+        def fileName = "${sdkName}-${variant.buildType.name}"
         if (variant.buildType.name == 'release') {
-            fileName += "${variant.buildType.name}-"
+            fileName += "${variant.buildType.name}"
         }
-        outputFileName = "${fileName}.apk"
+        outputFileName = "${fileName}.aar"
     }
 }
 
