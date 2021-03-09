@@ -33,16 +33,16 @@ abstract class BaseActivity : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_NO -> {
                 screenLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                 viewToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-                logoImageView.setColorFilter(ContextCompat.getColor(this,R.color.black))
+                logoImageView.setColorFilter(ContextCompat.getColor(this, R.color.black))
                 Glide.with(this)
                     .asBitmap()
                     .load(Constant.mncLogo)
                     .into(logoImageView)
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                screenLayout.setBackgroundColor(resources.getColor(R.color.grey_900))
-                viewToolbar.setBackgroundColor(resources.getColor(R.color.grey_900))
-                logoImageView.setColorFilter(resources.getColor(R.color.white))
+                screenLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_900))
+                viewToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_900))
+                logoImageView.setColorFilter(ContextCompat.getColor(this, R.color.white))
                 Glide.with(this)
                     .asBitmap()
                     .load(Constant.mncLogo)
