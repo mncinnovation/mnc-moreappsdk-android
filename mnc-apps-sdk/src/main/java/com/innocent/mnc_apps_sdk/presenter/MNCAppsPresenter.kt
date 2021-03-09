@@ -43,10 +43,10 @@ class MNCAppsPresenter(val context: Context): MNCAppsContract.Presenter {
         view?.showProgressBar(true)
 
         view?.userID?.let { it ->
-            interactor?.getDataNetwork(userID = it, packageName = view?.packageNameApps!!, platformType = view?.platformType!!)
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeWith(object : DisposableObserver<ResponseData>() {
+            interactor.getDataNetwork(userID = it, packageName = view?.packageNameApps!!, platformType = view?.platformType!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ResponseData>() {
                     override fun onNext(responseData: ResponseData) {
                         layoutApps = responseData.layout!!
                         listApps.clear()

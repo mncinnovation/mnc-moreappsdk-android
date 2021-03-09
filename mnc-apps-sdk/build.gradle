@@ -5,6 +5,17 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def customizeApkName(variant) {
+    variant.outputs.all {
+        def sdkName = "mncapps"
+        def fileName = "${sdkName}-${variant.buildType.name}-"
+        if (variant.buildType.name == 'release') {
+            fileName += "${variant.buildType.name}-"
+        }
+        outputFileName = "${fileName}.apk"
+    }
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -14,6 +25,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
+        libraryVariants.all { variant ->
+            customizeApkName(variant)
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

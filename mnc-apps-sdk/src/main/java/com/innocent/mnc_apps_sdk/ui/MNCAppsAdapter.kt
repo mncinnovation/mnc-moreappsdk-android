@@ -40,11 +40,9 @@ class MNCAppsAdapter(
     @Suppress("DEPRECATION")
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(apps: AppsModel, layout: LayoutModel) {
-            var installed: Boolean = false
-            var buttonText: String = "Open"
 
-            installed = ButtonUtils.getInstalledStatus(data = apps, packageManager = context?.packageManager)
-            buttonText = ButtonUtils.getButtonLabel(data = apps, installed = installed)
+            var installed: Boolean = ButtonUtils.getInstalledStatus(data = apps, packageManager = context?.packageManager)
+            var buttonText: String = ButtonUtils.getButtonLabel(data = apps, installed = installed)
 
             itemView.title.text = apps.appName
             itemView.desc.text = apps.description?.id
