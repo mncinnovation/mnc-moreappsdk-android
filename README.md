@@ -15,8 +15,11 @@ Android SDK
 * Managed Button Click Behaviour
 * InApp WebView
 
-## Gradle
+## How To Use
 
+## Step 1
+
+Gradle
 ```python
 allprojects {
   repositories {
@@ -29,7 +32,7 @@ dependencies {
   implementation 'com.github.mncinnovation:mnc-moreappsdk-android:1.0.0'
 }
 ```
-or use Maven
+or Maven
 ```python
 <repositories>
   <repository>
@@ -43,4 +46,28 @@ or use Maven
   <artifactId>mnc-moreappsdk-android</artifactId>
   <version>1.0.0</version>
 </dependency>
+```
+## Step 2
+
+Navigate to MNCApps Screen/Page
+```python
+MNCAppsActivity.mainStartActivity(
+  this,
+  userID = [USER_ID],
+  packageName = [PACKAGE_NAME],
+  platformType = "android")
+```
+or use in your Activity
+```python
+button.setOnClickListener {
+  val intent = Intent(this, YourTargetActivity::class.java)
+  intent.putExtra(Constant.userID, [USER_ID])
+  intent.putExtra(Constant.packageName, [PACKAGE_NAME])
+  intent.putExtra(Constant.platformType, "android")
+  startActivity(intent)
+}
+```
+and use in YourTargetActivity.class
+```python
+MNCAppsActivity.showFragment(R.id.appsFrameLayout, this)
 ```
