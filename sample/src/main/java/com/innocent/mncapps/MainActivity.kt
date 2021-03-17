@@ -19,12 +19,12 @@ class MainActivity : AppCompatActivity() {
                 platformType = "android")
         }
 
-//        clickButton.setOnClickListener {
-//            val intent = Intent(this, TestActivity::class.java)
-//            intent.putExtra(Constant.userID, "irKmyJJGGlNjMt7Kpg3xYlRT6dn1")
-//            intent.putExtra(Constant.packageName, "an.android.app")
-//            intent.putExtra(Constant.platformType, "android")
-//            startActivity(intent)
-//        }
+        customClickButton.setOnClickListener {
+            val intent = Intent(this, TestActivity::class.java)
+            intent.putExtra(Constant.userID, "irKmyJJGGlNjMt7Kpg3xYlRT6dn1")
+            intent.putExtra(Constant.packageName, "an.android.app")
+            intent.putExtra(Constant.platformType, "android")
+            startActivity(intent)
+        }
     }
 }

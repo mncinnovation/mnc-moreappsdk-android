@@ -10,10 +10,20 @@
         android:id="@+id/clickButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Klik"
+        android:text="Default Toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/customClickButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Custom Toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/clickButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
