@@ -55,19 +55,27 @@ MNCAppsActivity.mainStartActivity(
   this,
   userID = [USER_ID],
   packageName = [PACKAGE_NAME],
-  platformType = "android")
+  platformType = [PLATFORM_TYPE])
 ```
-or use in your Activity
+or use in your Activity if you want to use the custom Toolbar
 ```python
 button.setOnClickListener {
   val intent = Intent(this, YourTargetActivity::class.java)
   intent.putExtra(Constant.userID, [USER_ID])
   intent.putExtra(Constant.packageName, [PACKAGE_NAME])
-  intent.putExtra(Constant.platformType, "android")
+  intent.putExtra(Constant.platformType, [PLATFORM_TYPE])
   startActivity(intent)
 }
 ```
-and use in YourTargetActivity.class
+Then, use in YourTargetActivity.class
 ```python
 MNCAppsActivity.showFragment(R.id.appsFrameLayout, this)
+```
+
+and add in activity_yourtarget.xml
+```python
+<FrameLayout
+    android:id="@+id/appsFrameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 ```
