@@ -51,11 +51,13 @@ or Maven
 
 Navigate to MNCApps Screen/Page
 ```python
-MNCAppsActivity.mainStartActivity(
-  this,
-  userID = [USER_ID],
-  packageName = [PACKAGE_NAME],
-  platformType = [PLATFORM_TYPE])
+button.setOnClickListener {
+  val intent = Intent(this, MNCAppsActivity::class.java)
+  intent.putExtra(Constant.userID, [USER_ID])
+  intent.putExtra(Constant.packageName, [PACKAGE_NAME])
+  intent.putExtra(Constant.platformType, [PLATFORM_TYPE])
+  startActivity(intent)
+}
 ```
 or use in your Activity if you want to use the custom Toolbar
 ```python
