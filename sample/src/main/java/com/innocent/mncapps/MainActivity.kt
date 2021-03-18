@@ -13,10 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         clickButton.setOnClickListener {
-            MNCAppsActivity.mainStartActivity(this,
-                userID = "irKmyJJGGlNjMt7Kpg3xYlRT6dn1",
-                packageName = "an.android.app",
-                platformType = "android")
+            val intent = Intent(this, MNCAppsActivity::class.java)
+            intent.putExtra(Constant.userID, "irKmyJJGGlNjMt7Kpg3xYlRT6dn1")
+            intent.putExtra(Constant.packageName, "an.android.app")
+            intent.putExtra(Constant.platformType, "android")
+            startActivity(intent)
         }
 
         customClickButton.setOnClickListener {

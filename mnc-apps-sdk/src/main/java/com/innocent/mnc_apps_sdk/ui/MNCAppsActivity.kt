@@ -28,19 +28,6 @@ class MNCAppsActivity : BaseActivity() {
     }
 
     companion object {
-        fun mainStartActivity(
-            context: Context,
-            userID: String,
-            packageName: String,
-            platformType: String,
-        ) {
-            val intent = Intent(context, MNCAppsActivity::class.java)
-            intent.putExtra(Constant.userID, userID)
-            intent.putExtra(Constant.packageName, packageName)
-            intent.putExtra(Constant.platformType, platformType)
-            context.startActivity(intent)
-        }
-
         fun showFragment(view: Int, activity: FragmentActivity) {
             val mncAppsFragment = MNCAppsFragment()
             val bundle = Bundle()
