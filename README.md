@@ -29,7 +29,7 @@ allprojects {
 }
 
 dependencies {
-  implementation 'com.github.mncinnovation:mnc-moreappsdk-android:1.0.0'
+  implementation 'com.github.mncinnovation:mnc-moreappsdk-android:1.0.1'
 }
 ```
 or Maven
@@ -44,7 +44,7 @@ or Maven
 <dependency>
   <groupId>com.github.mncinnovation</groupId>
   <artifactId>mnc-moreappsdk-android</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 ## Step 2
