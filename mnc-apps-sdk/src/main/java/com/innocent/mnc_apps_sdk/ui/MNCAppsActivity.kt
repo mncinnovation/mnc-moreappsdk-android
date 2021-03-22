@@ -1,9 +1,7 @@
 package com.innocent.mnc_apps_sdk.ui
 
-import android.content.Context
-import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.innocent.mnc_apps_sdk.R
 import com.innocent.mnc_apps_sdk.base.BaseActivity
@@ -36,7 +34,15 @@ class MNCAppsActivity : BaseActivity() {
 
             val userID: String? = activity.intent.getStringExtra(Constant.userID)
             val packageNameApps: String? = activity.intent.getStringExtra(Constant.packageName)
-            val platformType: String? = activity.intent.getStringExtra(Constant.platformType)
+            var platformType: String? = activity.intent.getStringExtra(Constant.platformType)
+
+            if (userID == null || packageNameApps == null) {
+                Toast.makeText(activity, "Please fill user ID or package name", Toast.LENGTH_SHORT).show()
+            }
+
+            if (platformType == null) {
+                platformType = "android"
+            }
 
             bundle.putString(Constant.userID, userID)
             bundle.putString(Constant.packageName, packageNameApps)
