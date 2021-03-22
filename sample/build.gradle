@@ -53,5 +53,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //MNCApps Library
-    implementation 'com.github.mncinnovation:mnc-moreappsdk-android:1.0.0'
+    implementation 'com.github.mncinnovation:mnc-moreappsdk-android:1.0.1'
 }
